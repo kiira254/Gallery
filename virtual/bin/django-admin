@@ -1,4 +1,4 @@
-#!/home/nelly/Documents/moringa/Python/DJANGO/Gallery/virtual/bin/python
+#!/home/nelly/Documents/moringa/Python/DJANGO/Gallery/virtual/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

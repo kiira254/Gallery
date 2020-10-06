@@ -17,17 +17,23 @@ from django.contrib.auth.models import User
     # def save_editor(self):
     #     self.save()
 
+class Categories(models.Model):
+    name = models.CharField(max_length =30)
+
+    def __str__(self):
+        return self.name
+
 
 class Image(models.Model):
-    Image = models.ImageField(upload_to = 'image/',on_delete=models.CASCADE))
+    Image = models.ImageField(upload_to = 'image/')
     Name = models.CharField(max_length =60)
     Description = models.TextField()
-    Categories= models.ForeignKey(User,on_delete=models.CASCADE)
-    Location = models.ForeignKey(User,on_delete=models.CASCADE)
+    Categories= models.ManyToManyField(Categories)
+    # Location = models.ForeignKey(User,on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.title
+        return self.Name
     @classmethod
     def todays_photos(cls):
         today = dt.date.today()
@@ -43,10 +49,4 @@ class Image(models.Model):
     def search_by_categories(cls,search_term):
         photos = cls.objects.filter(categories__icontains=search_term)
         return photos
-
-class Categories(models.Model):
-    name = models.CharField(max_length =30)
-
-    def __str__(self):
-        return self.name
 

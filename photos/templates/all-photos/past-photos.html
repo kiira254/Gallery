@@ -9,17 +9,17 @@
   
     <div class="row">
         <div class="col-md-2"></div>
-      <!-- displaying photos articles -->
+      <!-- displaying photos image -->
       <div class="col-xs-6 col-sm-6 col-md-8 col-lg-6">
-        <h2 class="text-center"> {{ photos_item.title }} </h2>
-        <p class="text-center">{{photos_item.post}} </p>
+        <h2 class="text-center"> {{ photos_item.category }} </h2>
+        <p class="text-center">{{photos_item.description}} </p>
       <!-- </div> -->
       <div class="col-md-2"></div>
     </div>
   
     {% empty %}
     <div class="row">
-      <h2 class="text-center">There No Photos Items</h2>
+      <h4 class="text-center">Photos Yet To Be Uploaded</h4>
     </div>
     {% endfor %}
   

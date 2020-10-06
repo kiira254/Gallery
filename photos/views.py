@@ -4,13 +4,14 @@ from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, redirect
 import datetime as dt
+from .models import Image
 
-def welcome( request ):
-    return render(request, 'welcome.html'))
+# def welcome( request ):
+#     return render(request, 'welcome.html')
 
 def photos_of_day(request):
     date = dt.date.today()
-    photos = Article.todays_photos()
+    photos = Image.todays_photos()
     return render(request, 'all-photos/today-photos.html',{'date': date,"photos":photos})
 
 def past_days_photos(request,past_date):
@@ -26,14 +27,14 @@ def past_days_photos(request,past_date):
     if date == dt.date.today():
         return redirect(photos_today)
     
-    photos = Article.days_photos(date)
+    photos = Image.days_photos(date)
     return render(request, 'all-photos/past-photos.html', {"date":date, 'photos':photos})
 
 def search_results(request):
 
     if 'image' in request.GET and request.GET["image"]:
         search_term = request.GET.get("image")
-        searched_images = Image.search_by_catefories(search_term)
+        searched_images = Image.search_by_categories(search_term)
         message = f"{search_term}"
 
         return render(request, 'all-photos/search.html',{"message":message,"image": searched_images})
@@ -41,3 +42,10 @@ def search_results(request):
     else:
         message = "You haven't searched for any category"
         return render(request, 'all-photos/search.html',{"message":message})
+
+def image(request,image_id):
+    try:
+        image = Image.objects.get(id = image_id)
+    except DoesNotExist:
+        raise Http404()
+    return render(request,"all-photos/image.html", {"image":image})

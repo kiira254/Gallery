@@ -4,7 +4,7 @@ from .models import Image, Categories
 
 # Register your models here.
 
-class ArticleAdmin(admin.ModelAdmin):
+class ImageAdmin(admin.ModelAdmin):
     filter_horizontal =('Categories',)
 
 admin.site.register(Image)

@@ -12,7 +12,7 @@ class ImageTestClass(TestCase):
         self.new_categories = categories(name = 'testing')
         self.new_category.save()
 
-        self.new_image= Image(title = 'Test Article',post = 'This is a random test Post')
+        self.new_image= Image(title = 'Test Image',post = 'This is a random test Post')
         self.new_image.save()
 
         self.new_image.categories.add(self.new_categories)

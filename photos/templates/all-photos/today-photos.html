@@ -7,22 +7,23 @@
   <!-- Looping through photos   -->
   {% for photos_item in photos %}
   <div class="row">
-    <!-- displaying photos articles -->
+    <!-- displaying photos images -->
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-      <h2 class="text-center"> {{ photos_item.title }} </h2>
-      <p class="text-center"> {{ photos_item.post }} </p>
+      <h2 class="text-center"> {{ photos_item.Name }} </h2>
+      <h4 class="text-center"> {{ photos_item.pub_date }} </h4>
+      <p class="text-center"> {{ photos_item.Description }} </p>
     </div>
 
-    <!--Display photos Article images  -->
+    <!--Display photos image images  -->
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-      <img src="{{photos_item.article_image.url}}" class="img-responsive" alt="Image">
+      <img src="{{photos_item.Image.url}}" class="img-responsive" alt="Image">
     </div>
 
   </div>
 
   {% empty %}
   <div class="row">
-    <h2 class="text-center">There No photos Items </h2>
+    <h4 class="text-center">Photos Yet To Be Uploaded </h4>
   </div>
   {% endfor %}
 
