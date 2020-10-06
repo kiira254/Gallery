@@ -16,3 +16,9 @@ class Editor(models.Model):
     
     def save_editor(self):
         self.save()
+
+class categories(models.Model):
+    name = models.CharField(max_length =30)
+
+    def __str__(self):
+        return self.name
