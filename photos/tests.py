@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.test import TestCase
-from .models import Editor,Article,tags
+from .models import Image,Categories
 import datetime as dt
 
 # Create your tests here.
