@@ -2,10 +2,11 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse, Http404
+from django.shortcuts import render
 import datetime as dt
 
 def welcome( request ):
-    return HttpResponse ('welcome to my gallery')
+    return render(request, 'welcome.html'))
 
 def photos_of_day(request):
     date = dt.date.today()
