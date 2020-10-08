@@ -6,8 +6,8 @@ from django.shortcuts import render, redirect
 import datetime as dt
 from .models import Image
 
-# def welcome( request ):
-#     return render(request, 'welcome.html')
+def welcome( request ):
+    return render(request, 'picture.html')
 
 def photos_of_day(request):
     date = dt.date.today()
