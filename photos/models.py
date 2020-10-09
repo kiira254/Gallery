@@ -13,8 +13,7 @@ class Image_Location (models.Model):
     
     def __str__(self):
         return self.name
-# image.location
-# image.catagory
+
 class Image(models.Model):
     Image = models.ImageField(upload_to = 'image/')
     Name = models.CharField(max_length =60)
@@ -43,8 +42,7 @@ class Image(models.Model):
 
     @classmethod
     def save_Image (cls):
-        photos=cls.objects.filter(location__name='mombasa')
-        # location=
+        photos=cls.objects.filter()
         return photos
 
     @classmethod

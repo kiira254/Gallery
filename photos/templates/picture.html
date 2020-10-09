@@ -1,6 +1,14 @@
 {%extends 'all-photos/base.html'%}
+{% load bootstrap3 %}
+{% load static %}
 {% block content %} 
 {{ block.super}}
+ {% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/basephotos.css' %}">
+{% endblock %}
+
+
 
 <div class="container">
 
@@ -10,12 +18,13 @@
     <!-- displaying photos images -->
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
       <h2 class="text-center"> {{ photos_item.Name }} </h2>
+      <h3 class="text-center"> {{ photos_item.location }} </h3>
       <p class="text-center"> {{ photos_item.Description }} </p>
-    </div>
+    </div> <br> <br>
 
     <!--Display photos image images  -->
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-      <img src="{{photos_item.Image.url}}" class="img-responsive" alt="Image">
+      <img style="width:400px;", src="{{photos_item.Image.url}}" class="img-responsive" alt="Image">
     </div>
 
   </div>
