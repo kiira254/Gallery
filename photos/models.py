@@ -2,34 +2,25 @@ from django.db import models
 import datetime as dt
 from django.contrib.auth.models import User
 
-# Create your models here.
-# class Editor(models.Model):
-    # first_name = models.CharField(max_length =30)
-    # last_name = models.CharField(max_length =30)
-    # email = models.EmailField()
-    # phone_number = models.CharField(max_length = 10,blank =True)
-
-    # def __str__(self):
-    #     return self.first_name
-    # class meta:
-    #     ordering =['name']
-    
-    # def save_editor(self):
-    #     self.save()
-
 class Categories(models.Model):
     name = models.CharField(max_length =30)
 
     def __str__(self):
         return self.name
 
-
+class Image_Location (models.Model):
+    name = models.CharField(max_length=30)
+    
+    def __str__(self):
+        return self.name
+# image.location
+# image.catagory
 class Image(models.Model):
     Image = models.ImageField(upload_to = 'image/')
     Name = models.CharField(max_length =60)
     Description = models.TextField()
-    # Categories= models.ManyToManyField(Categories)
-    Location = models.ForeignKey(User,on_delete=models.CASCADE)
+    categories= models.ForeignKey(Categories,on_delete=models.CASCADE)
+    location = models.ForeignKey(Image_Location,on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -46,11 +37,45 @@ class Image(models.Model):
         return photos
     
     @classmethod
-    def search_by_categories(cls,search_term):
+    def search_by_Categories(cls,search_term):
         photos = cls.objects.filter(categories__icontains=search_term)
         return photos
 
     @classmethod
-    def save_image (cls):
-        photos=cls.objects.filter(Categories=Categories)
+    def save_Image (cls):
+        photos=cls.objects.filter(location__name='mombasa')
+        # location=
+        return photos
+
+    @classmethod
+    def delete_Image (cls):
+        photos=cls.objects.filter()
+        return photos
+
+    @classmethod
+    def update_Image (cls):
+        photos=cls.objects.filter()
+        return photos
+    
+    @classmethod
+    def get_Image_by_id (cls):
+        photos=cls.objects.filter(id=id)
+        return photos
+
+    @classmethod
+    def Image_Location (cls):
+        photos=cls.objects.filter(Image_Location=Image_Location)
+        return photos
+
+
+    
+
+
+
+
+    
+
+    
+
+    
 

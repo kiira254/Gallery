@@ -4,11 +4,11 @@ from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, redirect
 import datetime as dt
-from .models import Image
+from .models import Image, Categories, Image_Location
 
 def picture( request ):
-
-    return render(request, 'picture.html',{})
+    photos = Image.save_Image()
+    return render(request, 'picture.html',{"photos":photos})
 
 def photos_of_day(request):
     date = dt.date.today()
