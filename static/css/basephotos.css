@@ -6,6 +6,8 @@ h3{
   color: tomato;
 }
 body{
-
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   background-image: url(https://cdn.shopify.com/s/files/1/0337/7469/products/sweet-pink-ombre-wallpaper-mural_1800x1800.jpg?v=1596397295);
 }
