@@ -1,3 +1,4 @@
+
 {%extends 'all-photos/base.html'%}
 {% load bootstrap3 %}
 {% load static %}
@@ -11,18 +12,17 @@
 
 
   <div class="container">
-
-    <!-- Looping through photos   -->
-    {% for photos_item in photos %}
     <div class="row">
-      <!--Display photos image images  -->
-      <div class="col-lg-6 mb-4 col-xs-12 col-sm-12 col-md-4">
-        <button type="button" style="background-color: rgb(243, 225, 243);" data-toggle="modal" data-target="#exampleModalLong">
-           <img style="width: 300px;height: 300px;" src="{{photos_item.Image.url}}" class="img-responsive" alt="Image">
-        </button><br><br>
-      </div>
-      
-      <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <!-- Looping through photos   -->
+      {% for photos_item in photos %}
+    
+        <div class="col-md-4">
+          <button type="button" style="background-color: rgb(243, 225, 243);" data-toggle="modal" data-target="#exampleModalLong{{photos_item.id}}">
+            <img style="width: 300px;height: 300px;" src="{{photos_item.Image.url}}" class="img-responsive" alt="Image">
+          </button><br><br>
+        </div>
+    </div>
+      <div class="modal fade" id="exampleModalLong{{photos_item.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
