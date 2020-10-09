@@ -10,23 +10,41 @@
 
 
 
-<div class="container">
+  <div class="container">
 
-  <!-- Looping through photos   -->
-  {% for photos_item in photos %}
-  <div class="row">
-    <!-- displaying photos images -->
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-      <h2 class="text-center"> {{ photos_item.Name }} </h2>
-      <h3 class="text-center"> {{ photos_item.location }} </h3>
-      <p class="text-center"> {{ photos_item.Description }} </p>
-    </div> <br> <br>
+    <!-- Looping through photos   -->
+    {% for photos_item in photos %}
+    <div class="row">
+      <!--Display photos image images  -->
+      
+        <button type="button" style="background-color: rgb(243, 225, 243); width:200px;" data-toggle="modal" data-target="#exampleModalLong">
+           <img src="{{photos_item.Image.url}}" class="img-responsive" alt="Image">
+        </button><br><br>
+      
+      <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle"><img style="width:500px;", src="{{photos_item.Image.url}}" class="img-responsive" alt="Image"></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                  <h2 class="text-center"> {{ photos_item.Name }} </h2>
+                  <h3 class="text-center"> {{ photos_item.location }} </h3>
+                  <p class="text-center"> {{ photos_item.Description }} </p>
+                </div> 
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <!--Display photos image images  -->
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-     <button> <img style="width:500px;", src="{{photos_item.Image.url}}" class="img-responsive" alt="Image"></button>
-    </div>
-
+      <!-- displaying photos images -->
+      
   </div>
 
   {% empty %}
@@ -38,3 +56,9 @@
 </div>
 
 {% endblock %}
+
+<summary class="btn btn-primary" data-hydro-click="{&quot;event_type&quot;:&quot;repository.click&quot;,&quot;payload&quot;:{&quot;repository_id&quot;:301714991,&quot;target&quot;:&quot;CLONE_OR_DOWNLOAD_BUTTON&quot;,&quot;originating_url&quot;:&quot;https://github.com/kiira254/Gallery&quot;,&quot;user_id&quot;:67689794}}" data-hydro-click-hmac="6236b716e785a918838f5536d1e42d7b3837f7976a7c33a112e7247cf2b9ba8d">
+  <svg class="octicon octicon-download mr-1" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.47 10.78a.75.75 0 001.06 0l3.75-3.75a.75.75 0 00-1.06-1.06L8.75 8.44V1.75a.75.75 0 00-1.5 0v6.69L4.78 5.97a.75.75 0 00-1.06 1.06l3.75 3.75zM3.75 13a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5z"></path></svg>
+  Code
+  <span class="dropdown-caret"></span>
+</summary>
