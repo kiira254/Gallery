@@ -41,8 +41,8 @@ def search_results(request):
         return render(request, 'all-photos/search.html',{"message":message,"image": searched_images})
 
     else:
-        message = f"{search_term}"
-        # message = "You haven't searched for any category"
+        
+        message = "You haven't searched for any category"
         return render(request, 'all-photos/search.html',{"message":message})
 
 def image(request,image_id):
