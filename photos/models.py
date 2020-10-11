@@ -54,9 +54,9 @@ class Image(models.Model):
         return photos
     
     @classmethod
-    def search_by_category(cls, category):
-        images = cls.objects.filter(category__name__icontains=category)
-        return images
+    def search_by_category(cls, categories):
+        Image = cls.objects.filter(categories__name__icontains=categories)
+        return Image
 
     @classmethod
     def save_Image (cls):
@@ -71,7 +71,8 @@ class Image(models.Model):
     @classmethod
     def update_image(self, name=name, category=None):
         self.name = name if name else self.name
-        self.category = category if category else self.category
+        self.categories = categories if categories else self.categori
+
         self.save()
     
     @classmethod
@@ -80,20 +81,15 @@ class Image(models.Model):
 
     @classmethod
     def filter_by_location(cls, location):
-        image_location = Image.objects.filter(location__name=location).all()
-        return image_location
+        Image_Location = Image.objects.filter(location__name=location).all()
+        return  Image_Location
 
     @classmethod
     def search_image(cls, key):
-        images = cls.objects.filter(
+        Image = cls.objects.filter(
             cls(description__contains=key) | cls(Name__icontains=key) | cls(location__place__icontains=key))
-        print(images)
-        return images
-
-    @classmethod
-    def search_by_title(cls, search_term):
-        news = cls.objects.filter(name__icontains=search_term)
-        return news
+        print(Image)
+        return Image
 
     def __repr__(self):
         return f'''
@@ -101,8 +97,7 @@ class Image(models.Model):
             description: {self.description},
             category: {self.category},
             location: {self.location},
-            submitted: {self.submitted},
-            image: {self.image},
+            Image: {self.Image},
                 '''
 
 
