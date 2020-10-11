@@ -9,82 +9,39 @@
 <link rel="stylesheet" href="{% static 'css/basephotos.css' %}">
 {% endblock %}
 
-
-
   <div class="container">
     <div class="row">
-      <!-- Looping through photos   -->
       {% for photos_item in photos %}
-    
-        <div class="col-md-4">
-          <button id="link" type="button" style="background-color: rgb(243, 225, 243);" data-toggle="modal" data-target="#exampleModalLong{{photos_item.id}}">
-            <img style="width: 300px;height: 300px;" src="{{photos_item.Image.url}}" class="img-responsive" alt="Image">
-            <div class="tooltip">
-              <button onclick="myFunction()" onmouseout="outFunc()">
-                <span class="tooltiptext" id="myTooltip">Copy </span>
-                </button>
-              </div>
-          </button>
-        </div>
-         
-        </div>
-        
-    <script>
-      function myFunction() {
-        var copyText = document.getElementById("link");
-        copyText.select();
-        copyText.setSelectionRange(0, 99999);
-        document.execCommand("copy");
-        
-        var tooltip = document.getElementById("myTooltip");
-        tooltip.innerHTML = "Copied: " + copyText.value;
-      }
-      
-      function outFunc() {
-        var tooltip = document.getElementById("myTooltip");
-        tooltip.innerHTML = "Copy to clipboard";
-      }
-      </script>
-      
-      
-      
+      <div class="col-md-3">
+        <a id="link" type="button" style="background-color: rgb(243, 225, 243);" data-toggle="modal" data-target="#exampleModalLong{{photos_item.id}}">
+          <img style="width: 300px;height: 300px;" src="{{photos_item.Image.url}}" class="img-responsive" alt="Image">
+        </a>
+        <h4 class="text-center" style="color: rgb(219, 134, 240);">Location: {{ photos_item.location }} </h4>
+      </div>
       <div class="modal fade" id="exampleModalLong{{photos_item.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle"><img style="width:500px;", src="{{photos_item.Image.url}}" class="img-responsive" alt="Image"></h5>
+              <h2 class="modal-title" id="exampleModalLongTitle">{{ photos_item.name}}</h2>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
-              
-                  <h2 class="text-center"> {{ photos_item.Name }} </h2>
-                  <h3 class="text-center"> {{ photos_item.location }} </h3>
-                  <p class="text-center"> {{ photos_item.Description }} </p>
-                </div> 
-            </div>
-            <div class="modal-footer">
+            <div class="modal-body" style="text-align: center;">
+              <img style="width: 600px;height: 300px;" src="{{photos_item.Image.url}}" class="img-responsive" alt="Image">
+              <h2 class="" style="color: purple;">Category: {{ photos_item.categories }} </h2>
+              <h3 class="" style="color: purple;">Location: {{ photos_item.location }} </h3>
+              <h4 class="" style="color: rgb(59, 39, 59);">{{ photos_item.Description }} </h4>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
+           </div>
           </div>
         </div>
       </div>
-
-      <!-- displaying photos images -->
-    
-
-  {% empty %}
-  <div class="row">
-    <h4 class="text-center">Photos Yet To Be Uploaded </h4>
+      {% empty %}
+      <div class="row">
+        <h4 class="text-center">Gallery is Empty</h4>
+      </div>
+      {% endfor %}
+    </div>
   </div>
-  {% endfor %}
-
-</div>
-
-{% block scripts %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-{% bootstrap_javascript %}
-<script src="myscripts.js"></script>
-{% endblock %}
 {% endblock %}

@@ -33,12 +33,18 @@ def past_days_photos(request,past_date):
 
 def search_results(request):
 
-    if 'image' in request.GET and request.GET["image"]:
-        search_term = request.GET.get("image")
-        searched_images = Image.search_by_categories(search_term)
-        message = f"{search_term}"
+    if 'image' in request.GET and request.GET['image']:
+        search_term = request.GET.get('image')
+        print(search_term)
+        searched_photos = Image.search_by_title(search_term)
+        print(searched_photos)
+        message = f'{search_term}'
+        params = {
+            'searched_photos': searched_photos,
+            'message': message,
+        }
 
-        return render(request, 'all-photos/search.html',{"message":message,"image": searched_images})
+        return render(request, 'all-photos/search.html',params)
 
     else:
         
@@ -51,3 +57,28 @@ def image(request,image_id):
     except DoesNotExist:
         raise Http404()
     return render(request,"all-photos/image.html", {"image":image})
+
+def filter_by_category(request):
+    if 'image' in request.GET and request.GET['image']:
+        search_term = request.GET.get('image')
+        print(search_term)
+        searched_photos = Image.search_by_category(search_term)
+        message = f'{search_term}'
+        params = {
+            'searched_photos': searched_photos,
+            'message': message,
+        }
+
+        return render(request, 'category.html', params)
+
+
+def filter_by_locale(request):
+    if 'image' in request.GET and request.GET['image']:
+        search_term = request.GET.get('image')
+        print(search_term)
+        searched_photos = Image.filter_by_location(search_term)
+        message = f'{search_term}'
+        params = {
+            'searched_photos': searched_photos,
+            'message': message,
+        }
